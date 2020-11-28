@@ -1,21 +1,18 @@
-import TimeClock from "./TimeClock";
+import TimeClock from "./models/TimeClock.model";
+import Job from './models/Job.model';
+import Employee from './models/Employee.model';
 
-const employee = {
-  id: 1,
-  firstName: "Steffen",
-  lastName: "Andersland"
-}
 
-const job = {
-  id: 1,
-  number: "WO20333"
-}
+const employee = new Employee("Steffen", "Andersland");
+const job = new Job("WO20333");
 
 const tc = TimeClock.start();
 
 tc.addEntry(job, employee);
-tc.addEntry(job, employee);
-tc.addEntry(job, employee);
-tc.addEntry(job, employee);
 
-console.log(tc.entries);
+setTimeout(() => {
+  tc.addEntry(job, employee);
+  console.log(tc.entries);
+}, 2000);
+
+

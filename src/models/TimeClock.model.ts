@@ -1,17 +1,9 @@
-interface Employee {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
-
-interface Job {
-  id: number;
-  number: string;
-}
+import Job from "./Job.model";
+import Employee from "./Employee.model";
 
 interface TimeEntry {
-  userId: number;
-  jobId: number;
+  userId: string;
+  jobId: string;
   timeIn: number;
   timeOut?: number;
 }
