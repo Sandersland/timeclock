@@ -1,7 +1,9 @@
+import {v4 as uuidv4} from 'uuid';
 import Job from "./Job.model";
 import Employee from "./Employee.model";
 
 interface TimeEntry {
+  id: string;
   userId: string;
   jobId: string;
   timeIn: number;
@@ -23,26 +25,28 @@ export default class TimeClock {
     return this.instance;
   }
 
-  addEntry(job: Job, employee: Employee): void {
+  addEntry(jobId: string, employeeId: string): TimeEntry {
     let currentEntry: TimeEntry;
     let lastEntry: TimeEntry;
     const now = TimeClock.now();
-    const employeeEntries = this.entries.filter((entry) => employee.id === entry.userId);
+    const employeeEntries = this.entries.filter((entry) => employeeId === entry.userId);
     if (employeeEntries.length > 0) {
       lastEntry = employeeEntries[employeeEntries.length -1];
       if (!lastEntry.hasOwnProperty("timeOut")) {
         lastEntry.timeOut = now;
-        return;
+        return lastEntry;
       } 
     } 
-    
+  
     currentEntry = {
-      userId: employee.id,
-      jobId: job.id,
+      id: uuidv4(),
+      userId: employeeId,
+      jobId: jobId,
       timeIn: now
     }
 
     this.entries.push(currentEntry);
+    return currentEntry;
   }
   
   private static now(): number {
