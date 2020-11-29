@@ -41,8 +41,8 @@ export default class TimeClock {
       jobId: job.id,
       timeIn: now
     }
+
     this.entries.push(currentEntry);
-    
   }
   
   private static now(): number {

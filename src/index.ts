@@ -1,18 +1,21 @@
-import TimeClock from "./models/TimeClock.model";
-import Job from './models/Job.model';
-import Employee from './models/Employee.model';
+import express from 'express';
+import bodyParser from 'body-parser';
 
+import timeClockRoutes from './routes/timeclock.route';
+import employeeRoutes from './routes/employee.route';
+import jobRoutes from './routes/job.route';
+import {errorHandler} from './utils';
 
-const employee = new Employee("Steffen", "Andersland");
-const job = new Job("WO20333");
+const app = express();
 
-const tc = TimeClock.start();
+app.use(bodyParser.json());
 
-tc.addEntry(job, employee);
+app.use("/employees", employeeRoutes);
+app.use("/jobs", jobRoutes);
+app.use("/timeclock", timeClockRoutes);
 
-setTimeout(() => {
-  tc.addEntry(job, employee);
-  console.log(tc.entries);
-}, 2000);
+app.use(errorHandler);
 
-
+app.listen(3000, () => {
+  console.log("listening on port 3000");
+});
