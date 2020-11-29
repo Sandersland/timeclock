@@ -1,6 +1,6 @@
 import {Router} from 'express';
 
-import {NotFoundError} from '../utils';
+import {NotFoundError, qsFilter} from '../utils';
 import TimeClock from "../models/TimeClock.model";
 import Job from '../models/Job.model';
 import Employee from '../models/Employee.model';
@@ -15,7 +15,11 @@ tc.addEntry(job, employee);
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.json({status: "success", payload: tc.entries});
+  const entries = qsFilter(req.query, tc.entries);
+  if (!entries.length) {
+    throw new NotFoundError("No timeclock entries found.");
+  }
+  res.json({status: "success", payload: entries});
 });
 
 export default router;
