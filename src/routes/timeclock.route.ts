@@ -36,7 +36,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const {userId, jobId} = req.body;
   const entry = tc.addEntry(jobId, userId);
-  res.json({status: "success", payload: entry});
+  res.status(201).json({status: "success", payload: entry});
 });
 
 router.patch("/:id", (req, res) => {

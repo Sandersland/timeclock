@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
   const {firstName, lastName} = (req.body as {firstName: string, lastName: string});
   const employee = new Employee(firstName, lastName);
   employees.push(employee);
-  res.json({status: "success", payload: employee});
+  res.status(201).json({status: "success", payload: employee});
 });
 
 router.patch("/:id", (req, res) => {
