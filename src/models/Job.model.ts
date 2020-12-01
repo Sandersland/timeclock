@@ -1,10 +1,13 @@
-import Model from './Base.model';
+import * as mongoose from 'mongoose';
 
-export default class Job extends Model {
+interface IJob extends mongoose.Document {
   number: string;
-
-  constructor(number: string) {
-    super();
-    this.number = number;
-  }
 }
+
+const JobSchema = new mongoose.Schema({
+  number: {type: String, required: true}
+});
+
+const Job = mongoose.model<IJob>('Job', JobSchema);
+
+export default Job;

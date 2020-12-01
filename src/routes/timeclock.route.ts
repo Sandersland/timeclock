@@ -10,7 +10,9 @@ const employee = new Employee({
   lastName: "Andersland"
 });
 
-const job = new Job("WO20333");
+const job = new Job({
+  number: "WO20333"
+});
 
 const tc = TimeClock.start();
 
