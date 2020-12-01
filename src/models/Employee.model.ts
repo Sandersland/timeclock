@@ -1,12 +1,15 @@
-import Model from './Base.model';
+import * as mongoose from 'mongoose';
 
-export default class Employee extends Model {
+interface IEmployee extends mongoose.Document {
   firstName: string;
   lastName: string;
-
-  constructor(firstName:string, lastName:string) {
-    super();
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
 }
+
+const EmployeeSchema = new mongoose.Schema({
+  firstName: {type: String, required: true},
+  lastName: {type: String, required: true}
+});
+
+const Employee = mongoose.model<IEmployee>('Employee', EmployeeSchema);
+
+export default Employee;

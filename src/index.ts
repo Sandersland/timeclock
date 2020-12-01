@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 import timeClockRoutes from './routes/timeclock.route';
 import employeeRoutes from './routes/employee.route';
@@ -16,6 +17,8 @@ app.use("/timeclock", timeClockRoutes);
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
-});
+mongoose.connect("mongodb://localhost:27017").then(() => {
+  app.listen(3000, () => {
+    console.log("listening on port 3000");
+  });
+}).catch(console.error)

@@ -5,7 +5,11 @@ import TimeClock from "../models/TimeClock.model";
 import Job from '../models/Job.model';
 import Employee from '../models/Employee.model';
 
-const employee = new Employee("Steffen", "Andersland");
+const employee = new Employee({
+  firstName: "Steffen",
+  lastName: "Andersland"
+});
+
 const job = new Job("WO20333");
 
 const tc = TimeClock.start();

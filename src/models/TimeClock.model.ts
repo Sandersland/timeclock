@@ -1,6 +1,4 @@
 import {v4 as uuidv4} from 'uuid';
-import Job from "./Job.model";
-import Employee from "./Employee.model";
 
 interface TimeEntry {
   id: string;
