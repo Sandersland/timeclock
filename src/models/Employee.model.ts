@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-interface IEmployee extends mongoose.Document {
+export interface IEmployee extends mongoose.Document {
   firstName: string;
   lastName: string;
 }

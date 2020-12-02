@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-interface IJob extends mongoose.Document {
+export interface IJob extends mongoose.Document {
   number: string;
 }
 
